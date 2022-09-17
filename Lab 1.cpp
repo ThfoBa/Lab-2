@@ -36,3 +36,22 @@ pitomnik initialization(int k, double p, double r, int a, int v, int h, int pr)
 	check.price_korm = 15;
 	return check;
 }
+
+pitomnik vvod()
+{
+	pitomnik tmp; // вспомогательная переменная
+	tmp = initialization(0, 0, 0, 0, 0, 0, 0);
+	printf("Введите имя животного: \n");
+	rewind(stdin);
+	gets_s(tmp.dogs.name, LN);
+	printf("Введите возраст животного (кол-во полных месяцев): \n");
+	scanf("%d", &tmp.dogs.age);
+	printf("Введите вес животного (в граммах): \n");
+	scanf("%d", &tmp.dogs.ves);
+	printf("Введите состояние здоровья животного (от 1 до 10): \n");
+	scanf("%d", &tmp.dogs.health);
+	printf("Введите стоимость животного: \n");
+	scanf("%lf", &tmp.dogs.price);
+	tmp.kolvo++;
+	return tmp;
+}
