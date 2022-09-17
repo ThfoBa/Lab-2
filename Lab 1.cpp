@@ -55,3 +55,16 @@ pitomnik vvod()
 	tmp.kolvo++;
 	return tmp;
 }
+
+void vivod(pitomnik tmp)
+{
+	printf("Количество животных: %d шт.\n", tmp.kolvo);
+	printf("Прибыль питомника: %lf руб.\n", tmp.pribil);
+	printf("Расходы питомника: %lf руб.\n", tmp.rasxodi);
+	printf("Стоимость корма: %d руб.\n", tmp.price_korm);
+	printf("Имя животного: %s\n", tmp.dogs.name);
+	printf("Возраст животного: %d мес.\n", tmp.dogs.age);
+	printf("Вес животного: %d гр.\n", tmp.dogs.ves);
+	printf("Состояние здоровья животного: %d\n", tmp.dogs.health);
+	printf("Стоимость животного: %lf руб.\n", tmp.dogs.price);
+}
