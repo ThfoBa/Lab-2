@@ -68,3 +68,10 @@ void vivod(pitomnik tmp)
 	printf("Состояние здоровья животного: %d\n", tmp.dogs.health);
 	printf("Стоимость животного: %lf руб.\n", tmp.dogs.price);
 }
+pitomnik kormlenie(pitomnik tmp)
+{
+	tmp.dogs.ves += 1;
+	tmp.rasxodi = tmp.rasxodi + tmp.price_korm * tmp.kolvo;
+	printf("Животные накормлены!\n");
+	return tmp;
+}
