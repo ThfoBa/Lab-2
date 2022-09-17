@@ -108,16 +108,38 @@ int main()
 	tmp = vvod();
 	printf("\nПосле ввода: \n");
 	vivod(tmp);
-	
 	tmp = kormlenie(tmp);
 	printf("\nПосле кормления: \n");
 	vivod(tmp);
 	tmp = prodaja(tmp);
 	printf("\n После продажи: \n");
 	vivod(tmp);
-	
-	
+	pitomnik dog1;
+	dog1 = vvod();
+	add_price(tmp, dog1);
+	pitomnik* c = (pitomnik*)malloc(LN * sizeof(pitomnik));
+	printf("\nРабота с динамическими переменными:\n");
+	*c = initialization(kolvo, 0, 0, 0, 0, 0, 0);
+	printf("\nИнициализация: \n");
+	vivod(*c);
+	*c = vvod();
+	printf("\nПосле ввода: \n");
+	vivod(*c);
+	*c = kormlenie(*c);
+	printf("\nПосле кормления:\n");
+	vivod(*c);
+	*c = prodaja(*c);
+	printf("\nПосле продажи:\n");
+	vivod(*c);
+	pitomnik* c1 = (pitomnik*)malloc(LN * sizeof(pitomnik));
+	*c1 = vvod();
+	add_price(*c, *c1);
+	printf("\nАдреса динамических переменных:\n");
+	printf("%p", c);
 	return 0;
 }
+
+	
+	
 
 		
