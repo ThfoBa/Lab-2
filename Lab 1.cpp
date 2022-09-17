@@ -22,3 +22,17 @@ typedef struct {
 	int price_korm;
 	pets dogs;
 }pitomnik;
+
+pitomnik initialization(int k, double p, double r, int a, int v, int h, int pr)
+{
+	pitomnik check; // вспомогательная переменная
+	check.kolvo = k;
+	check.pribil = p;
+	check.rasxodi = r;
+	check.dogs.age = a;
+	check.dogs.ves = v;
+	check.dogs.health = h;
+	check.dogs.price = pr;
+	check.price_korm = 15;
+	return check;
+}
