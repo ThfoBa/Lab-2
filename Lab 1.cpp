@@ -37,9 +37,9 @@ pitomnik initialization(int k, double p, double r, int a, int v, int h, int pr)
 	return check;
 }
 
-pitomnik vvod()
+pitomnik vvod(pitomnik tmp)
 {
-	pitomnik tmp; // вспомогательная переменная
+	
 	tmp = initialization(0, 0, 0, 0, 0, 0, 0);
 	printf("Введите имя животного: \n");
 	rewind(stdin);
@@ -73,5 +73,18 @@ pitomnik kormlenie(pitomnik tmp)
 	tmp.dogs.ves += 1;
 	tmp.rasxodi = tmp.rasxodi + tmp.price_korm * tmp.kolvo;
 	printf("Животные накормлены!\n");
+	return tmp;
+}
+pitomnik prodaja(pitomnik tmp)
+{
+	tmp.kolvo -= 1;
+	tmp.pribil += tmp.dogs.price;
+	tmp.rasxodi -= tmp.price_korm * tmp.kolvo;
+	strcpy_s(tmp.dogs.name, default_pets_name);
+	tmp.dogs.age = 0;
+	tmp.dogs.ves = 0;
+	tmp.dogs.health = 0;
+	tmp.dogs.price = 0;
+	printf("Животное продано!\n");
 	return tmp;
 }
