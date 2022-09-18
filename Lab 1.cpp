@@ -4,6 +4,7 @@
 #include<string.h>
 #include <cstdlib>
 #include<malloc.h>
+#include <locale.h>
 
 #define LN 100
 #define price_korm 15
@@ -187,6 +188,7 @@ class pets : public pitomnik
 };
 int main()
 {
+	setlocale(LC_ALL, "rus");
 	double sum = 0;
 	char def[LN] = "no_name";
 	pets dogs(0, 0, 0, 15, def, 0, 0, 0, 0);
