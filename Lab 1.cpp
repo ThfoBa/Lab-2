@@ -7,7 +7,6 @@
 #include <locale.h>
 
 #define LN 100
-#define price_korm 15
 #define default_pets_name "no_name"
 using namespace std;
 
@@ -20,14 +19,14 @@ public:
 		kolvo = 0;
 		pribil = 0;
 		rasxodi = 0;
-		price_kormlenie = price_korm;
+		price_korm = 15;
 	}
-	pitomnik(int kolvo, double pribil, double rasxodi, int price_kormlenie)
+	pitomnik(int kolvo, double pribil, double rasxodi, int price_korm)
 	{
 		this->kolvo = kolvo;
 		this->pribil = pribil;
 		this->rasxodi = rasxodi;
-		this->price_kormlenie = price_kormlenie;
+		this->price_korm = price_korm;
 	}
 	int get_kolvo()
 	{
@@ -53,27 +52,19 @@ public:
 	{
 		this->rasxodi = rasxodi;
 	}
-	int get_price_kormlenie()
-	{
-		return price_kormlenie;
-	}
-	void set_price_kormlenie(int price_kormlenie)
-	{
-		this->price_kormlenie = price_kormlenie;
-	}
 	void read()
 	{
 		cout << "Количество животных: " << kolvo << endl;
 		cout << "Прибыль питомника: " << pribil << endl;
 		cout << "Расходы питомника: " << rasxodi << endl;
-		cout << "Цена корма для собак: " << price_kormlenie << endl;
+		cout << "Цена корма для собак: " << price_korm << endl;
 	}
 	friend pets;
 private:
 	int kolvo;
 	double pribil;
 	double rasxodi;
-	int price_kormlenie;
+	int price_korm;
 };
 class pets : public pitomnik
 {
@@ -86,7 +77,7 @@ class pets : public pitomnik
 			health = 0;
 			price = 0;
 		}
-		pets(int kolvo, double pribil, double rasxodi, int price_kormlenie, char name[LN], int age, int ves, int health, double price) : pitomnik(kolvo, pribil, rasxodi, price_kormlenie)
+		pets(int kolvo, double pribil, double rasxodi, int price_korm, char name[LN], int age, int ves, int health, double price) : pitomnik(kolvo, pribil, rasxodi, price_korm)
 		{
 			strcpy_s(this->name, name);
 			this->age = age;
@@ -148,7 +139,7 @@ class pets : public pitomnik
 			cout << "Количество животных: " << kolvo << endl;
 			cout << "Прибыль питомника: " << pribil << endl;
 			cout << "Расходы питомника: " << rasxodi << endl;
-			cout << "Стоимость корма для собак: " << price_kormlenie << endl;
+			cout << "Стоимость корма для собак: " << price_korm << endl;
 			cout << "Имя животного: " << name << endl;
 			cout << "Возраст животного: " << age << endl;
 			cout << "Вес животного: " << ves << endl;
@@ -158,14 +149,14 @@ class pets : public pitomnik
 		void kormlenie()
 		{
 			ves += 1;	
-			rasxodi = rasxodi + price_kormlenie;
+			rasxodi = rasxodi + price_korm;
 			cout << "Животное накормлено!\n";
 		}
 		void prodaja()
 		{
 			pribil += price;
 			kolvo -= 1;
-			rasxodi -= price_kormlenie;
+			rasxodi -= price_korm;
 			strcpy_s(name, default_pets_name);
 			age = 0;
 			ves = 0;
