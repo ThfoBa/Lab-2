@@ -185,6 +185,25 @@ class pets : public pitomnik
 		int health;
 		double price;
 };
-
+int main()
+{
+	double sum = 0;
+	char def[LN] = "no_name";
+	pets dogs(0, 0, 0, 15, def, 0, 0, 0, 0);
+	cout << "После инициализации:" << endl;
+	dogs.vivod();
+	dogs.vvod();
+	cout << "После ввода:" << endl;
+	dogs.vivod();
+	cout << "После кормления:" << endl;
+	dogs.kormlenie();
+	dogs.vivod();
+	cout << "После продажи:" << endl;
+	dogs.prodaja();
+	dogs.vivod();
+	sum = dogs.add_price(sum);
+	return 0;
+	
+}
 
 
