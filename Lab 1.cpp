@@ -202,8 +202,23 @@ int main()
 	dogs.prodaja();
 	dogs.vivod();
 	sum = dogs.add_price(sum);
-	return 0;
+	pets* dog1 = new pets(0, 0, 0, 15, def, 0, 0, 0, 0);
+	cout << "\n" << "Работа с динамическим массивом объектов класса:" << endl;
+	cout << "После инициализации:" << endl;
+	dog1->vivod();
+	dog1->vvod();
+	cout << "После ввода:" << endl;
+	dog1->vivod();
+	cout << "После кормления:" << endl;
+	dog1->kormlenie();
+	dog1->vivod();
+	cout << "После продажи:" << endl;
+	dog1->prodaja();
+	dog1->vivod();
+	sum = dog1->add_price(sum);
+	delete dog1;
 	
+	return 0;
 }
 
 
