@@ -217,7 +217,59 @@ int main()
 	dog1->vivod();
 	sum = dog1->add_price(sum);
 	delete dog1;
-	
+	cout << "\n" << "Работа с массивом динамических объектов класса:" << endl;
+	pets** dogy = new pets * [LN];
+	int kol = 0;
+	cout << "Введите кол-во животных: " << endl;
+	cin >> kol;
+	for (int i = 0; i < kol; i++)
+	{
+		dogy[i] = new pets(i, 0, 0, 15, def, 0, 0, 0, 0);
+		dogy[i]->vvod();
+	}
+	for (int i = 0; i < kol; i++)
+	{
+		dogy[i]->set_kolvo(kol);
+	}
+	for (int j = 0; j < kol; j++)
+	{
+		dogy[j]->vivod();
+		cout << "\n";
+	}
+	for (int j = 0; j < kol; j++)
+	{
+		sum = dogy[j]->add_price(sum);
+	}
+	cout << "После кормления:" << endl;
+	for (int j = 0; j < kol; j++)
+	{
+		dogy[j]->kormlenie();
+		if (j + 1 != kol)
+		{
+			dogy[j + 1]->set_rasxodi(dogy[j]->get_rasxodi());
+		}
+		dogy[j]->getname();
+		dogy[j]->getves();
+		cout << endl;
+	}
+	for (int j = 0; j < kol; j++)
+	{
+		dogy[j]->set_rasxodi(dogy[kol - 1]->get_rasxodi());
+	}
+	dogy[kol - 1]->read();
+	cout << "После продажи:" << endl;
+	for (int j = 0; j < kol; j++)
+	{
+		dogy[j]->prodaja();
+		if (j + 1 != kol)
+		{
+			dogy[j + 1]->set_rasxodi(dogy[j]->get_rasxodi());
+			dogy[j + 1]->set_pribil(dogy[j]->get_pribil());
+			dogy[j + 1]->set_kolvo(dogy[j]->get_kolvo());
+		}
+	}
+	dogy[kol - 1]->read();
+	delete[] dogy;
 	return 0;
 }
 
