@@ -85,35 +85,10 @@ class pets : public pitomnik
 			this->health = health;
 			this->price = price;
 		}
-		void setname(char name[LN])
-		{
-			strcpy_s(this->name, name);
-		}
-		void setage(int age)
-		{
-			this->age = age;
-		}
-		void setves(int ves)
-		{
-			this->ves = ves;
-		}
-		void sethealth(int health)
-		{
-			this->health = health;
-		}
-		void setprice(double price)
-		{
-			this->price = price;
-		}
 		string getname()
 		{
 			cout << "Имя животного: " << name << endl;
 			return name;
-		}
-		int getage()
-		{
-			cout << "Возраст животного (кол-во полных месяцев): " << age << endl;
-			return age;
 		}
 		int getves()
 		{
