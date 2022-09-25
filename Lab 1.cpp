@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <malloc.h>
+#include <Windows.h>
 #include <conio.h>
 #include <locale.h>
 #define LN 100
@@ -21,17 +22,19 @@ typedef struct {
 	int kolvo;
 	double pribil;
 	double rasxodi;
+	double pribil_chistaya;
 	int price_korm;
 	pets dogs[LN];
 }pitomnik;
 
 
-pitomnik initialization(int k, double p, double r,int id, int a, int v, int h, int pr)
+pitomnik initialization(int k, double p,double pchist, double r,int id, int a, int v, int h, int pr)
 {
 	pitomnik check; 
 	check.kolvo = k;
 	check.pribil = p;
 	check.rasxodi = r;
+	check.pribil_chistaya = pchist;
 	check.price_korm = 15;
 	for (int i = 0; i < k; i++)
 	{
@@ -48,7 +51,7 @@ pitomnik vvod()
 {
 	pitomnik tmp;
 	int kol;
-	tmp = initialization(1, 0, 0, 27, 23, 2000, 10,999);
+	tmp = initialization(1, 0, 0, 0, 27, 23, 2000, 10,999);
 	printf("Введите количество животных, которых требуется добавить: \n");
 	scanf_s("%d", &kol);
 	for (int i = 1; i <= kol; i++)
@@ -73,20 +76,44 @@ pitomnik vvod()
 void add_price(pitomnik tmp)
 {
 	double sum = 0;
-
 	for (int i = 0; i < (tmp.kolvo); i++)
 	{
 		sum += tmp.dogs[i].price;
 	}
-
 	printf("Итоговая стоимость животных: %lf руб.\n", sum);
 }
+double pribil_chistaya(pitomnik tmp)
+{
+	double pribil_chist = 0;
+	pribil_chist = (tmp.pribil) - (tmp.rasxodi);
+	return pribil_chist;
+}
+double pribil(pitomnik tmp,int k)
+{
+	double pribil = 0;
+	pribil += tmp.dogs[k].price;
+	return pribil;
+}
+int numofdogtosell(pitomnik tmp,int id)
+{
+	int k = 0;
+	for (int i = 0; i < (tmp.kolvo); i++)
+	{
+		if (id == (tmp.dogs[i].id))
+		{
+			k = i;
+			break;
+		}
+	}
+	return k;
+}	
 void vivod(pitomnik tmp)
 {
 
 	printf("Количество животных: %d шт.\n", tmp.kolvo);
-	printf("Прибыль питомника: %lf руб.\n", tmp.pribil);
+	printf("Прибыль питомника (грязная): %lf руб.\n", tmp.pribil);
 	printf("Расходы питомника: %lf руб.\n", tmp.rasxodi);
+	printf("Чистая прибыль питомника: %lf руб.\n", tmp.pribil_chistaya);
 	printf("Стоимость корма: %d руб.\n", tmp.price_korm);
 	for (int i = 0; i < (tmp.kolvo); i++)
 	{
@@ -103,7 +130,6 @@ pitomnik kormlenie(pitomnik tmp)
 	for (int i = 0; i < tmp.kolvo; i++)
 	{
 		tmp.dogs[i].ves += 1;
-
 	}
 	tmp.rasxodi = tmp.rasxodi + (tmp.price_korm * tmp.kolvo);
 	printf("Животные накормлены!\n");
@@ -114,15 +140,9 @@ pitomnik prodaja(pitomnik tmp)
 	int i,id,k=0;
 	printf("Введите ID животного, которое требуется продать: ");
 	scanf_s("%d", &id);
-	for (int i = 0; i < (tmp.kolvo); i++)
-	{
-		if (id == (tmp.dogs[i].id))
-		{
-			k = i;
-			break;
-		}
-	}
-	tmp.pribil += tmp.dogs[k].price;
+	k = numofdogtosell(tmp, id);
+	tmp.pribil = pribil(tmp,k);
+	tmp.pribil_chistaya = pribil_chistaya(tmp);
 	if ((k != 0) && (k != ((tmp.kolvo) - 1)) && (id == (tmp.dogs[k].id)))
 	{
 		for (int i = k; i < ((tmp.kolvo) - 1); i++)
@@ -137,7 +157,7 @@ pitomnik prodaja(pitomnik tmp)
 			tmp.dogs[i] = tmp.dogs[i + 1];
 		}
 	}
-	else if ((id == (tmp.dogs[k].id))&& (k == ((tmp.kolvo) - 1)))
+	else if ((id == (tmp.dogs[k].id))&& (k == (tmp.kolvo)))
 	{
 		tmp.kolvo -= 1;
 	}
@@ -151,7 +171,7 @@ int main()
 	pitomnik tmp;
 	char l;
 	do {
-		tmp = initialization(2, 0, 0, 27, 23, 2000, 10, 999);
+		tmp = initialization(1, 0, 0, 0, 27, 23, 2000, 10, 999);
 		vivod(tmp);
 		tmp = vvod();
 		printf("\nПосле ввода: \n");
@@ -167,6 +187,7 @@ int main()
 		printf("Для повтора программы нажмите любую клавишу.\n");
 		printf("Для выхода из программы нажмите ESC.\n");
 		l = _getch();
+		system("cls");
 	} while (l != 27);
 	return 0;
 }
