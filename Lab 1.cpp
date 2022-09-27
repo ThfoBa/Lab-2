@@ -140,7 +140,6 @@ public:
 		cin >> price;
 		kolvo++;
 	}
-
 	void vivod()
 	{
 		cout << "Количество животных: " << kolvo << endl;
